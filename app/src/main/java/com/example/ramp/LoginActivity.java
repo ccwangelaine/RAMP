@@ -33,9 +33,13 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void validate(String inputName, String inputPassword){
-        if( (inputName.equals("12345")) && (inputPassword.equals("12345")) ){
-            Intent openPage2 = new Intent(LoginActivity.this, RegisterActivity.class);
-            startActivity(openPage2);
-        }
+//        if( (inputName.equals("12345")) && (inputPassword.equals("12345")) ){
+//            Intent openPage2 = new Intent(LoginActivity.this, RegisterActivity.class);
+//            startActivity(openPage2);
+//        }
+
+        /**
+         * Do some checks like make sure all text fields are not empty, and then call retrieve api endpoint from UserRepository
+         */
     }
 }
