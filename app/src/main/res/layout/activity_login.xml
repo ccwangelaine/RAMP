@@ -6,6 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#06244A"
     tools:context=".Login">
 
 
@@ -14,7 +15,8 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login or Register"
+        android:text="ACCESS"
+        android:textColor="#F6FAF9"
         android:textSize="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,6 +30,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Password"
+        android:textColorHint="#FFFFFF"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,6 +40,7 @@
 
     <EditText
         android:id="@+id/Lemail"
+        android:textColorHint="#FFFFFF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -50,23 +54,18 @@
 
     <Button
         android:id="@+id/LoginBtn"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:layout_width="200dp"
+        android:text="Log In"
+        android:textSize="20dp"
+        android:textColor="#F6FAF9"
+        android:background="#EDB50A"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.62" />
 
-    <TextView
-        android:id="@+id/Question"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/LoginBtn"
-        android:layout_centerHorizontal="true"
-        android:textColor="#F6FAF9"
-        android:text="Don't have an account?" />
 
     <Button
         android:id="@+id/RegisterBtn"
