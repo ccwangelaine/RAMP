@@ -32,39 +32,12 @@ public class Login extends AppCompatActivity {
         register = findViewById(R.id.RegisterBtn);
         fAuth = FirebaseAuth.getInstance();
 
-
-
         register.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                String emailtxt = email.getText().toString().trim();
-                String passwordtxt = password.getText().toString().trim();
-
-                if(TextUtils.isEmpty(emailtxt)) {
-                    email.setError("Email is required");
-                    return;
-                }
-
-                if(TextUtils.isEmpty(passwordtxt)){
-                    password.setError("Password is required");
-                    return;
-                }
-
-                fAuth.createUserWithEmailAndPassword(emailtxt, passwordtxt).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(Login.this, "Registration Successful", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        }
-                        else{
-                            Toast.makeText(Login.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+            public void onClick(View v) {
+                openRegisterPage();
             }
         });
-
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,5 +70,10 @@ public class Login extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void openRegisterPage() {
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
     }
 }
