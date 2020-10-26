@@ -7,9 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.*;
+
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -20,6 +19,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText email, password;
     Button register;
     FirebaseAuth fAuth;
+    ImageView goback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +30,7 @@ public class RegisterActivity extends AppCompatActivity {
         password = findViewById(R.id.Lpassword);
         register = findViewById(R.id.SignupBtn);
         fAuth = FirebaseAuth.getInstance();
+        goback = findViewById(R.id.backToSignin);
 
 
 
@@ -38,6 +39,13 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String emailtxt = email.getText().toString().trim();
                 String passwordtxt = password.getText().toString().trim();
+
+                goback.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        goBackToSignInPage();
+                    }
+                });
 
                 if(TextUtils.isEmpty(emailtxt)) {
                     email.setError("Email is required");
@@ -61,8 +69,13 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     }
                 });
+
             }
         });
 
+    }
+    public void goBackToSignInPage() {
+        Intent intent = new Intent(RegisterActivity.this, Login.class);
+        startActivity(intent);
     }
 }
