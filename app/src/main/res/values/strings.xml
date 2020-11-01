@@ -5,9 +5,16 @@
     <string name="dismiss_label">Dismiss</string>
     <string name="clear_label">Clear all</string>
 
-    <string-array name = "modality">
+    <string-array name="modality">
         <item>Color Blind</item>
         <item>Service Animal User</item>
         <item>Chair User</item>
     </string-array>
+
+    <string-array name="color_blindness_type">
+        <item>Red-Green</item>
+        <item>Blue-Yellow</item>
+        <item>Total</item>
+    </string-array>
+
 </resources>
