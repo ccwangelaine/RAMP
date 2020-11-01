@@ -16,7 +16,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class RegisterActivity extends AppCompatActivity {
-    EditText email, password;
+    EditText email, password, Cpassword;
     Button register;
     FirebaseAuth fAuth;
     ImageView goback;
@@ -28,6 +28,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         email = findViewById(R.id.Lemail);
         password = findViewById(R.id.Lpassword);
+        Cpassword = findViewById(R.id.confirmPassword);
         register = findViewById(R.id.SignupBtn);
         fAuth = FirebaseAuth.getInstance();
         goback = findViewById(R.id.backToSignin);
@@ -39,6 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String emailtxt = email.getText().toString().trim();
                 String passwordtxt = password.getText().toString().trim();
+                String Cpasswordtxt = Cpassword.getText().toString().trim();
 
                 goback.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -54,6 +56,16 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if(TextUtils.isEmpty(passwordtxt)){
                     password.setError("Password is required");
+                    return;
+                }
+
+                if(TextUtils.isEmpty(Cpasswordtxt)){
+                    Cpassword.setError("Password is required");
+                    return;
+                }
+
+                if(passwordtxt.equals(Cpasswordtxt) == false){
+                    Cpassword.setError("Passwords must match");
                     return;
                 }
 

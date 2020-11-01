@@ -8,15 +8,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+import android.content.Intent;
 
 import java.util.ArrayList;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class ProfilePage1Activity extends AppCompatActivity {
     EditText preferredName, gender, age;
-    Button modalityButton;
+    Button modalityButton, nextButton;
     String[] listItems;
     boolean[] checkedItems;
     ArrayList<Integer> userItems = new ArrayList<>();
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +31,15 @@ public class ProfilePage1Activity extends AppCompatActivity {
         setContentView(R.layout.activity_profile_page1);
 
         modalityButton = (Button) findViewById(R.id.modalityBtn);
+        preferredName = findViewById(R.id.preferName);
+        gender = findViewById(R.id.etgender);
+        age = findViewById(R.id.etage);
+        nextButton = findViewById(R.id.NextBtn1);
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        final String uid = user.getUid();
+
 
         listItems = getResources().getStringArray(R.array.modality);
         checkedItems = new boolean[listItems.length];
@@ -73,6 +89,17 @@ public class ProfilePage1Activity extends AppCompatActivity {
 
                 AlertDialog searchModality = builder.create();
                 searchModality.show();
+            }
+        });
+
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UserModel user = new UserModel(preferredName.getText().toString().trim(), gender.getText().toString().trim(), age.getText().toString().trim(), "idk");
+                mDatabase.child("users").child(uid).setValue(user);
+                Toast.makeText(ProfilePage1Activity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+                Intent openPage = new Intent(ProfilePage1Activity.this, ProfilePage7Activity.class);
+                startActivity(openPage);
             }
         });
     }
