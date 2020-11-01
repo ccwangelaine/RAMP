@@ -4,77 +4,91 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#06244A"
+    android:background="#152238"
     tools:context=".RegisterActivity">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ACCESS"
+        android:text="access"
         android:textColor="#F6FAF9"
-        android:textSize="32dp"
+        android:textSize="55dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.203" />
+        app:layout_constraintVertical_bias="0.149" />
 
     <EditText
         android:id="@+id/Lpassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="308dp"
+        android:layout_height="40dp"
+        android:background="@drawable/rounded_edittext"
         android:ems="10"
         android:hint="Password"
-        android:textColorHint="#FFFFFF"
         android:inputType="textPassword"
+        android:textColorHint="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.410" />
+        app:layout_constraintVertical_bias="0.41" />
 
     <EditText
         android:id="@+id/confirmPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="308dp"
+        android:layout_height="40dp"
+        android:background="@drawable/rounded_edittext"
         android:ems="10"
         android:hint="Confirm Password"
         android:inputType="textPassword"
-        android:textColorHint="#FFFFFF"
+        android:textColorHint="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.476" />
+        app:layout_constraintVertical_bias="0.499" />
 
     <EditText
         android:id="@+id/Lemail"
-        android:textColorHint="#FFFFFF"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="308dp"
+        android:layout_height="39dp"
+        android:background="@drawable/rounded_edittext"
         android:ems="10"
         android:hint="Email"
         android:inputType="textPersonName"
+        android:textColorHint="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.341" />
+        app:layout_constraintVertical_bias="0.328" />
 
     <Button
         android:id="@+id/SignupBtn"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_width="310dp"
+        android:layout_height="67dp"
+        android:background="@drawable/rounded_corners"
         android:text="Sign Up"
-        android:textSize="20dp"
         android:textColor="#F6FAF9"
-        android:background="#EDB50A"
+        android:textStyle="bold"
+        android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.62" />
+        app:layout_constraintVertical_bias="0.653" />
+
+    <ImageView
+        android:id="@+id/backToSignin"
+        android:layout_width="51dp"
+        android:layout_height="49dp"
+        app:srcCompat="@drawable/abc_vector_test"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="28dp"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
