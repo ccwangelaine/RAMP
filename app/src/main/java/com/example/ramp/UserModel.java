@@ -1,5 +1,7 @@
 package com.example.ramp;
 
+import java.util.ArrayList;
+
 // define the User class and what it stores e.g. username, password, email, user id
 public class UserModel {
     public String name;
@@ -7,27 +9,27 @@ public class UserModel {
     public String age;
     public String chairInfo;
     public String colorBlind;
-    public String modality;
+    public ArrayList<Integer> modalityList;
 
     public  UserModel(){
     }
 
-    public UserModel(String name, String gender, String age, String modality) {
+    public UserModel(String name, String gender, String age, ArrayList<Integer> modalityList) {
         this.name = name;
         this.gender = gender;
         this.age = age;
         this.chairInfo = "default";
         this.colorBlind = "default";
-        this.modality = modality;
+        this.modalityList = modalityList;
     }
 
-    public UserModel(String name, String gender, String age, String chairInfo, String colorBlind, String modality) {
+    public UserModel(String name, String gender, String age, String chairInfo, String colorBlind, ArrayList<Integer> modalityList) {
         this.name = name;
         this.gender = gender;
         this.age = age;
         this.chairInfo = chairInfo;
         this.colorBlind = colorBlind;
-        this.modality = modality;
+        this.modalityList = modalityList;
     }
 
     public void setAge(String age) {

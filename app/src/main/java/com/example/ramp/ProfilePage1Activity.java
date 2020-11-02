@@ -95,7 +95,7 @@ public class ProfilePage1Activity extends AppCompatActivity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UserModel user = new UserModel(preferredName.getText().toString().trim(), gender.getText().toString().trim(), age.getText().toString().trim(), "idk");
+                UserModel user = new UserModel(preferredName.getText().toString().trim(), gender.getText().toString().trim(), age.getText().toString().trim(), userItems);
                 mDatabase.child("users").child(uid).setValue(user);
                 Toast.makeText(ProfilePage1Activity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
                 Intent openPage = new Intent(ProfilePage1Activity.this, ProfilePage7Activity.class);

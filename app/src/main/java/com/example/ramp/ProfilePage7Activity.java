@@ -34,7 +34,7 @@ public class ProfilePage7Activity extends AppCompatActivity implements AdapterVi
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         final String uid = user.getUid();
 
-        Spinner spinner = findViewById(R.id.spinner1);
+        final Spinner spinner = findViewById(R.id.spinner1);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.color_blindness_type, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
@@ -44,7 +44,8 @@ public class ProfilePage7Activity extends AppCompatActivity implements AdapterVi
             @Override
             public void onClick(View view) {
                 mDatabase.child("users").child(uid).child("chairInfo").setValue(chair.getText().toString().trim());
-                mDatabase.child("users").child(uid).child("colorBlind").setValue("idk");
+                String color = spinner.getSelectedItem().toString();
+                mDatabase.child("users").child(uid).child("colorBlind").setValue(color);
                 Intent openPage = new Intent(ProfilePage7Activity.this, MainActivity.class);
                 startActivity(openPage);
             }
