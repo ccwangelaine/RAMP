@@ -70,9 +70,11 @@ public class Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
                             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                            boolean emailVerified = user.isEmailVerified();
-                            Log.d("Login.this", user.getEmail());
-                            Log.d("Login.this", Boolean.toString(emailVerified));
+                            boolean emailVerified = false;
+                            if(user!= null) {
+                                emailVerified = user.isEmailVerified();
+                            }
+
                             if (emailVerified == true) {
                                 Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
                                 Intent openPage2 = new Intent(Login.this, MainActivity.class);
