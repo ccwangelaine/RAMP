@@ -7,53 +7,20 @@
     android:background="#152238"
     tools:context=".ProfilePage7Activity">
 
-    <EditText
-        android:id="@+id/chair_style2"
-        android:layout_width="308dp"
+    <Button
+        android:id="@+id/chairBtn"
+        android:layout_width="310dp"
         android:layout_height="40dp"
-        android:background="@drawable/rounded_edittext"
-        android:ems="10"
-        android:hint="Chair Style"
+        android:background="@drawable/rounded_corners_white"
         android:inputType="text"
-        android:textColorHint="#000000"
+        android:text="Search for Chair Styles"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.514"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.712" />
-
-    <EditText
-        android:id="@+id/chair_style3"
-        android:layout_width="308dp"
-        android:layout_height="40dp"
-        android:background="@drawable/rounded_edittext"
-        android:ems="10"
-        android:hint="Chair Style"
-        android:inputType="text"
-        android:textColorHint="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.514"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.642" />
-
-    <EditText
-        android:id="@+id/chair_style"
-        android:layout_width="308dp"
-        android:layout_height="40dp"
-        android:background="@drawable/rounded_edittext"
-        android:ems="10"
-        android:hint="Chair Style"
-        android:inputType="text"
-        android:textColorHint="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.514"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.78" />
+        app:layout_constraintVertical_bias="0.652" />
 
     <TextView
         android:id="@+id/personalInfo3"
@@ -78,10 +45,10 @@
         android:popupBackground="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.26" />
+        app:layout_constraintVertical_bias="0.278" />
 
     <Button
         android:id="@+id/nextBtn"
