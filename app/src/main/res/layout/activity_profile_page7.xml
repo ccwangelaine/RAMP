@@ -8,7 +8,23 @@
     tools:context=".ProfilePage7Activity">
 
     <EditText
-        android:id="@+id/chair_style"
+        android:id="@+id/chair_style2"
+        android:layout_width="308dp"
+        android:layout_height="40dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:hint="Chair Style"
+        android:inputType="text"
+        android:textColorHint="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.514"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.712" />
+
+    <EditText
+        android:id="@+id/chair_style3"
         android:layout_width="308dp"
         android:layout_height="40dp"
         android:background="@drawable/rounded_edittext"
@@ -22,6 +38,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.642" />
+
+    <EditText
+        android:id="@+id/chair_style"
+        android:layout_width="308dp"
+        android:layout_height="40dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:hint="Chair Style"
+        android:inputType="text"
+        android:textColorHint="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.514"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.78" />
 
     <TextView
         android:id="@+id/personalInfo3"
