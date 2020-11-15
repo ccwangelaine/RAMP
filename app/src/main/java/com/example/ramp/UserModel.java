@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 // define the User class and what it stores e.g. username, password, email, user id
 public class UserModel {
-    public String name;
-    public String gender;
+    public static String name;
+    public static String gender;
     public String age;
     public String chairInfo;
     public String colorBlind;
@@ -50,5 +50,29 @@ public class UserModel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public String getChairInfo() {
+        return chairInfo;
+    }
+
+    public String getColorBlind() {
+        return colorBlind;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public static String getName() {
+        return name;
+    }
+
+    public ArrayList<Integer> getModalityList() {
+        return modalityList;
     }
 }

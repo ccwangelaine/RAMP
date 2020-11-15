@@ -1,5 +1,6 @@
 package com.example.ramp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -12,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.content.Intent;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -46,8 +49,21 @@ public class ProfilePage7Activity extends AppCompatActivity implements AdapterVi
                 mDatabase.child("users").child(uid).child("chairInfo").setValue(chair.getText().toString().trim());
                 String color = spinner.getSelectedItem().toString();
                 mDatabase.child("users").child(uid).child("colorBlind").setValue(color);
-                Intent openPage = new Intent(ProfilePage7Activity.this, MainActivity.class);
-                startActivity(openPage);
+                user.sendEmailVerification()
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(ProfilePage7Activity.this, "An email has been sent to your email address to verify your account. Please verify then sign in.", Toast.LENGTH_LONG).show();
+                                    Intent openPage = new Intent(ProfilePage7Activity.this, Login.class);
+                                    startActivity(openPage);
+                                }
+                                else{
+                                    Toast.makeText(ProfilePage7Activity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
             }
         });
     }
