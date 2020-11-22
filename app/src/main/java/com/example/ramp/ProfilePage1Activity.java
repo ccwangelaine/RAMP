@@ -55,8 +55,10 @@ public class ProfilePage1Activity extends AppCompatActivity {
                         if (isChecked) {
                             if (!userItems.contains(position)) {
                                 userItems.add(position);
-                            } else {
-                                userItems.remove(position);
+                            }
+                        } else {
+                            if (userItems.contains(position)) {
+                                userItems.remove(Integer.valueOf(position));
                             }
                         }
                     }
@@ -66,7 +68,11 @@ public class ProfilePage1Activity extends AppCompatActivity {
                 builder.setPositiveButton(R.string.ok_label, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //
+                        String toastdisplay = "standard ";
+                        for (int i = 0; i < userItems.size(); i++) {
+                            toastdisplay += userItems.get(i) + " ";
+                        }
+                        Toast.makeText(ProfilePage1Activity.this, toastdisplay, Toast.LENGTH_SHORT).show();
                     }
                 });
 
