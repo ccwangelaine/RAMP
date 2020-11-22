@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
 
-@RunWith(AndroidJUnit4ClassRunner)
+@RunWith(AndroidJUnit4ClassRunner.class)
 public class MainActivityTest {
 
 }
