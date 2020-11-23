@@ -16,5 +16,6 @@
         <item>Blue-Yellow</item>
         <item>Total</item>
     </string-array>
+    <string name="title_activity_maps">Map</string>
 
 </resources>
