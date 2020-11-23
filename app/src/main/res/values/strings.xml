@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">RAMP</string>
     <string name="searchModalityTitle">Search for modalities</string>
+    <string name="searchChairTitle">Search for chair styles</string>
     <string name="ok_label">OK</string>
     <string name="dismiss_label">Dismiss</string>
     <string name="clear_label">Clear all</string>
@@ -17,5 +18,11 @@
         <item>Total</item>
     </string-array>
     <string name="title_activity_maps">Map</string>
+
+    <string-array name="chair_style_type">
+        <item>Chair Style 1</item>
+        <item>Chair Style 2</item>
+        <item>Chair Style 3</item>
+    </string-array>
 
 </resources>
