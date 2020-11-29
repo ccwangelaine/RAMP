@@ -9,9 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity android:name=".resetPassword" />
-        <activity android:name=".StartAccessing"></activity>
+        <activity android:name=".StartAccessing" />
         <activity android:name=".ProfilePage7Activity" />
         <activity android:name=".ProfilePage1Activity" />
         <activity android:name=".Login">
