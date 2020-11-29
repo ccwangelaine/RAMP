@@ -1,5 +1,6 @@
 package com.example.ramp;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 // define the User class and what it stores e.g. username, password, email, user id
@@ -7,7 +8,7 @@ public class UserModel {
     public static String name;
     public static String gender;
     public String age;
-    public String chairInfo;
+    public ArrayList<Integer> chairList;
     public String colorBlind;
     public ArrayList<Integer> modalityList;
 
@@ -18,16 +19,16 @@ public class UserModel {
         this.name = name;
         this.gender = gender;
         this.age = age;
-        this.chairInfo = "default";
+        this.chairList = new ArrayList<>();
         this.colorBlind = "default";
         this.modalityList = modalityList;
     }
 
-    public UserModel(String name, String gender, String age, String chairInfo, String colorBlind, ArrayList<Integer> modalityList) {
+    public UserModel(String name, String gender, String age, ArrayList<Integer> chairList, String colorBlind, ArrayList<Integer> modalityList) {
         this.name = name;
         this.gender = gender;
         this.age = age;
-        this.chairInfo = chairInfo;
+        this.chairList = chairList;
         this.colorBlind = colorBlind;
         this.modalityList = modalityList;
     }
@@ -36,8 +37,8 @@ public class UserModel {
         this.age = age;
     }
 
-    public void setChairInfo(String chairInfo) {
-        this.chairInfo = chairInfo;
+    public void setChairList(ArrayList<Integer> chairList) {
+        this.chairList = chairList;
     }
 
     public void setColorBlind(String colorBlind) {
@@ -56,8 +57,8 @@ public class UserModel {
         return age;
     }
 
-    public String getChairInfo() {
-        return chairInfo;
+    public ArrayList<Integer> getChairList() {
+        return chairList;
     }
 
     public String getColorBlind() {

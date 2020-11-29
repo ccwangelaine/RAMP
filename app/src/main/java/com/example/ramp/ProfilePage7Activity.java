@@ -1,8 +1,10 @@
 package com.example.ramp;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,10 +22,17 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+
 
 public class ProfilePage7Activity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    EditText chair;
+    Button chairButton;
     Button next;
+
+    String[] listItems;
+    boolean[] checkedItems;
+    ArrayList<Integer> userItems = new ArrayList<>();
+
     private DatabaseReference mDatabase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +40,7 @@ public class ProfilePage7Activity extends AppCompatActivity implements AdapterVi
         setContentView(R.layout.activity_profile_page7);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        chair = findViewById(R.id.chair_style);
+        chairButton = findViewById(R.id.chairBtn);
         next = findViewById(R.id.nextBtn);
 
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -43,10 +52,60 @@ public class ProfilePage7Activity extends AppCompatActivity implements AdapterVi
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
+        listItems = getResources().getStringArray(R.array.chair_style_type);
+        checkedItems = new boolean[listItems.length];
+        chairButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(ProfilePage7Activity.this);
+                builder.setTitle(R.string.searchChairTitle);
+                builder.setMultiChoiceItems(listItems, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int position, boolean isChecked) {
+                        if (isChecked) {
+                            if (!userItems.contains(position)) {
+                                userItems.add(position);
+                            } else {
+                                userItems.remove(position);
+                            }
+                        }
+                    }
+                });
+
+                builder.setCancelable(false);
+                builder.setPositiveButton(R.string.ok_label, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //
+                    }
+                });
+
+                builder.setNegativeButton(R.string.dismiss_label, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                builder.setNeutralButton(R.string.clear_label, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        for (int i = 0; i < checkedItems.length; i++) {
+                            checkedItems[i] = false;
+                            userItems.clear();
+                        }
+                    }
+                });
+
+                AlertDialog searchChair = builder.create();
+                searchChair.show();
+            }
+        });
+
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mDatabase.child("users").child(uid).child("chairInfo").setValue(chair.getText().toString().trim());
+                mDatabase.child("users").child(uid).child("chairList").setValue(userItems);
                 String color = spinner.getSelectedItem().toString();
                 mDatabase.child("users").child(uid).child("colorBlind").setValue(color);
                 user.sendEmailVerification()
@@ -55,6 +114,8 @@ public class ProfilePage7Activity extends AppCompatActivity implements AdapterVi
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(ProfilePage7Activity.this, "An email has been sent to your email address to verify your account. Please verify then sign in.", Toast.LENGTH_LONG).show();
+
+                                    //TODO: change to go to Search Institution Page later
                                     Intent openPage = new Intent(ProfilePage7Activity.this, Login.class);
                                     startActivity(openPage);
                                 }
