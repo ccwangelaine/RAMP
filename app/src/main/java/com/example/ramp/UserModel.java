@@ -11,8 +11,10 @@ public class UserModel {
     public ArrayList<Integer> chairList;
     public String colorBlind;
     public ArrayList<Integer> modalityList;
+    public boolean firstTime;
 
     public  UserModel(){
+        firstTime = true;
     }
 
     public UserModel(String name, String gender, String age, ArrayList<Integer> modalityList) {
@@ -21,15 +23,6 @@ public class UserModel {
         this.age = age;
         this.chairList = new ArrayList<>();
         this.colorBlind = "default";
-        this.modalityList = modalityList;
-    }
-
-    public UserModel(String name, String gender, String age, ArrayList<Integer> chairList, String colorBlind, ArrayList<Integer> modalityList) {
-        this.name = name;
-        this.gender = gender;
-        this.age = age;
-        this.chairList = chairList;
-        this.colorBlind = colorBlind;
         this.modalityList = modalityList;
     }
 
@@ -67,6 +60,10 @@ public class UserModel {
 
     public String getGender() {
         return gender;
+    }
+
+    public boolean getFirstTime() {
+        return firstTime;
     }
 
     public static String getName() {
