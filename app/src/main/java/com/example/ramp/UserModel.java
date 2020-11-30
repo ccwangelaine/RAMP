@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 // define the User class and what it stores e.g. username, password, email, user id
 public class UserModel {
-    public static String name;
-    public static String gender;
+    public String name;
+    public String gender;
     public String age;
     public ArrayList<Integer> chairList;
     public String colorBlind;
@@ -66,7 +66,7 @@ public class UserModel {
         return firstTime;
     }
 
-    public static String getName() {
+    public String getName() {
         return name;
     }
 

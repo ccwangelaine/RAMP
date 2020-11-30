@@ -110,7 +110,7 @@ public class ProfilePage7Activity extends AppCompatActivity implements AdapterVi
                 mDatabase.child("users").child(uid).child("colorBlind").setValue(color);
                 mDatabase.child("users").child(uid).child("firstTime").setValue(false);
 
-                Intent openPage = new Intent(ProfilePage7Activity.this, MainActivity.class);
+                Intent openPage = new Intent(ProfilePage7Activity.this, StartAccessing.class);
                 startActivity(openPage);
             }
         });
