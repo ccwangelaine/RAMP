@@ -2,6 +2,7 @@ package com.example.ramp;
 
 import androidx.fragment.app.FragmentActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -11,6 +12,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -18,11 +20,18 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
+import com.google.firebase.database.annotations.NotNull;
 
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Arrays;
+
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -41,21 +50,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     @Override
     public void onMapReady(final GoogleMap googleMap) {
         mMap = googleMap;
 
-
-        // Add a marker in Sydney and move the camera
         LatLng berkeley = new LatLng(37.8715, -122.2730);
         //mMap.addMarker(new MarkerOptions().position(berkeley).title("Marker in Berkeley"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(berkeley, 15));
@@ -64,11 +62,44 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             @Override
             public void onMapClick(LatLng point) {
-                    testDirections();
-                        Marker marker2 = googleMap.addMarker(new MarkerOptions().position(point).title("Location"));
+                    //testDirections();
+                    Marker marker2 = googleMap.addMarker(new MarkerOptions().position(point).title("Location"));
                 }
         });
+        testSearch();
+    }
 
+    public void testSearch(){
+        // Initialize the SDK
+        String apiKey = "AIzaSyB8NIjZc-LX7rUxcqY6VfDnSCDLBNmY0qM";
+        Places.initialize(getApplicationContext(), apiKey);
+
+        // Create a new PlacesClient instance
+        PlacesClient placesClient = Places.createClient(this);
+        // Initialize the AutocompleteSupportFragment.
+        AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
+                getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+
+        // Specify the types of place data to return.
+        autocompleteFragment.getView().setBackgroundColor(Color.WHITE);
+        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.LAT_LNG));
+        // Set up a PlaceSelectionListener to handle the response.
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(@NotNull Place place) {
+                // TODO: Get info about the selected place.
+                Log.i("test", "Place: " + place.getLatLng());
+                LatLng location = place.getLatLng();
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 19));
+                mMap.addMarker(new MarkerOptions().position(location));
+            }
+
+            @Override
+            public void onError(@NotNull Status status) {
+                // TODO: Handle the error.
+                Log.i("test", "An error occurred: " + status);
+            }
+        });
     }
     public void testDirections(){
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -84,14 +115,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         Log.d("test", response.toString());
                     }
                 }, new Response.ErrorListener() {
-
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.d("testerror", error.getMessage());
-
                     }
                 });
         queue.add(jsonObjectRequest);
-
     }
 }
