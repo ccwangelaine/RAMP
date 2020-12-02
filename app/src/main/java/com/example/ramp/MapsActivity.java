@@ -71,7 +71,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public void testSearch(){
         // Initialize the SDK
-        String apiKey = "AIzaSyB8NIjZc-LX7rUxcqY6VfDnSCDLBNmY0qM";
+        String apiKey = getString(R.string.apiKey);
         Places.initialize(getApplicationContext(), apiKey);
 
         // Create a new PlacesClient instance
@@ -103,7 +103,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
     public void testDirections(){
         RequestQueue queue = Volley.newRequestQueue(this);
-        String apiKey = "AIzaSyB8NIjZc-LX7rUxcqY6VfDnSCDLBNmY0qM";
+        String apiKey = getString(R.string.apiKey);
         String origin = "Disneyland";
         String destination = "Universal+Studios+Hollywood";
         String url = "https://maps.googleapis.com/maps/api/directions/json?origin="+origin+"&destination=" + destination + "&key="+apiKey;
