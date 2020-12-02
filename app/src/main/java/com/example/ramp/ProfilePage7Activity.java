@@ -108,23 +108,10 @@ public class ProfilePage7Activity extends AppCompatActivity implements AdapterVi
                 mDatabase.child("users").child(uid).child("chairList").setValue(userItems);
                 String color = spinner.getSelectedItem().toString();
                 mDatabase.child("users").child(uid).child("colorBlind").setValue(color);
-                user.sendEmailVerification()
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(ProfilePage7Activity.this, "An email has been sent to your email address to verify your account. Please verify then sign in.", Toast.LENGTH_LONG).show();
+                mDatabase.child("users").child(uid).child("firstTime").setValue(false);
 
-                                    //TODO: change to go to Search Institution Page later
-                                    Intent openPage = new Intent(ProfilePage7Activity.this, Login.class);
-                                    startActivity(openPage);
-                                }
-                                else{
-                                    Toast.makeText(ProfilePage7Activity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-
+                Intent openPage = new Intent(ProfilePage7Activity.this, StartAccessing.class);
+                startActivity(openPage);
             }
         });
     }

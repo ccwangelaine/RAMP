@@ -2,6 +2,7 @@ package com.example.ramp;
 
 import android.content.Intent;
 import android.os.Build;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.content.Context;
 
@@ -25,21 +26,32 @@ import static org.robolectric.Shadows.shadowOf;
 @RunWith(RobolectricTestRunner.class)
 @Config(maxSdk = 28)
 public class testUnitTestRobolectri {
-        private Login activity;
+        private RegisterActivity register;
+        private ProfilePage1Activity activity;
+        private ProfilePage7Activity activity2;
         private Context context = ApplicationProvider.getApplicationContext();
 
         @Before
         public void setUp() throws Exception {
             FirebaseApp.initializeApp(context);
-            activity = Robolectric.buildActivity(Login.class)
-                    .create()
-                    .resume()
-                    .get();
+            register = new RegisterActivity();
+            register.onCreate(null);
+            activity = new ProfilePage1Activity();
+            activity.onCreate(null);
+
         }
         @Test
         public void pleaseWork () throws Exception{
-            TextView textView = (TextView) activity.findViewById(R.id.textView);
-            String text = textView.getText().toString();
-            assertEquals("access",text);
+            EditText email = (EditText)register.findViewById(R.id.Lemail);
+            email.setText("testeremail@email.com");
+            EditText password = (EditText)register.findViewById(R.id.Lpassword);
+            password.setText("password");
+            EditText cpassword = (EditText)register.findViewById(R.id.confirmPassword);
+            cpassword.setText("password");
+            register.findViewById(R.id.RegisterBtn).performClick();
+
+            assertEquals(password.getText(),cpassword.getText());
+
+
         }
 }

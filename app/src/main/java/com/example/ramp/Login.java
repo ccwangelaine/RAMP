@@ -17,11 +17,17 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Login extends AppCompatActivity {
     EditText email, password;
     Button login, register, forgot;
     FirebaseAuth fAuth;
+    private static final String TAG = "Login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +76,7 @@ public class Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
                             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            final String uid = user.getUid();
                             boolean emailVerified = false;
                             if(user!= null) {
                                 emailVerified = user.isEmailVerified();
@@ -77,8 +84,28 @@ public class Login extends AppCompatActivity {
 
                             if (emailVerified == true) {
                                 Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                                Intent openPage2 = new Intent(Login.this, MainActivity.class);
-                                startActivity(openPage2);
+                                DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("users").child(uid);
+
+                                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                        // This method is called once with the initial value and again
+                                        // whenever data at this location is updated.
+                                        UserModel userModel = dataSnapshot.getValue(UserModel.class);
+                                        //do whatever you want with user here!
+                                        if (userModel.getFirstTime()) {
+                                            openProfilePages();
+                                        } else {
+                                            openMainActivity();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(DatabaseError error) {
+                                        // Failed to read value
+                                        Log.w(TAG, "Failed to read value.", error.toException());
+                                    }
+                                });
                             }
                             else{
                                 Toast.makeText(Login.this, "Email not verified", Toast.LENGTH_SHORT).show();
@@ -92,6 +119,16 @@ public class Login extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void openProfilePages() {
+        Intent intent = new Intent(Login.this, ProfilePage1Activity.class);
+        startActivity(intent);
+    }
+
+    public void openMainActivity() {
+        Intent openPage2 = new Intent(Login.this, MainActivity.class);
+        startActivity(openPage2);
     }
 
     public void openRegisterPage() {

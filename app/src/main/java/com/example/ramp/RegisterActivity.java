@@ -14,12 +14,16 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
     EditText email, password, Cpassword;
     Button register;
     FirebaseAuth fAuth;
     ImageView goback;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +36,7 @@ public class RegisterActivity extends AppCompatActivity {
         register = findViewById(R.id.SignupBtn);
         fAuth = FirebaseAuth.getInstance();
         goback = findViewById(R.id.backToSignin);
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         goback.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,8 +82,27 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-//                            Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), ProfilePage1Activity.class));
+                            final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            final String uid = user.getUid();
+
+                            UserModel userModel = new UserModel();
+                            mDatabase.child("users").child(uid).setValue(userModel);
+
+                            user.sendEmailVerification()
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                Toast.makeText(RegisterActivity.this, "An email has been sent to your email address to verify your account. Please verify then sign in.", Toast.LENGTH_LONG).show();
+
+                                                Intent openPage = new Intent(RegisterActivity.this, Login.class);
+                                                startActivity(openPage);
+                                            }
+                                            else{
+                                                Toast.makeText(RegisterActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
                         }
                         else{
                             Toast.makeText(RegisterActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
