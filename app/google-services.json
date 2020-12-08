@@ -8,43 +8,6 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:294637374805:android:b94a3b63492e87374bb3dc",
-        "android_client_info": {
-          "package_name": "com.example.logintest"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "294637374805-h2tmgagkgpouojf99kc2p9ok77oumd5a.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.logintest",
-            "certificate_hash": "0d24f310ad0e2506c51b42c1ad6ba5514e51fd1c"
-          }
-        },
-        {
-          "client_id": "294637374805-o1u9qbo3udlinqgnflcq73bj469ovvt8.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDzfYvqzLxxvysKyKH9O0RbyDbNGHmTz1Q"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "294637374805-o1u9qbo3udlinqgnflcq73bj469ovvt8.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:294637374805:android:95e162b9e7e3c4c74bb3dc",
         "android_client_info": {
           "package_name": "com.example.ramp"
