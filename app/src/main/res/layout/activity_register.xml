@@ -73,6 +73,7 @@
         android:layout_height="67dp"
         android:background="@drawable/rounded_corners"
         android:text="Sign Up"
+        android:textAllCaps="false"
         android:textColor="#F6FAF9"
         android:textStyle="bold"
         android:textSize="25dp"
