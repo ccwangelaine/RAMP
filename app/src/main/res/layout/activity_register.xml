@@ -2,10 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/RegisterPage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#152238"
-    android:id="@+id/RegisterPage"
     tools:context=".RegisterActivity">
 
     <TextView
@@ -70,27 +70,33 @@
     <Button
         android:id="@+id/SignupBtn"
         android:layout_width="310dp"
-        android:layout_height="67dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="230dp"
         android:background="@drawable/rounded_corners"
         android:text="Sign Up"
         android:textAllCaps="false"
         android:textColor="#F6FAF9"
-        android:textStyle="bold"
         android:textSize="25dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/backToSignin"
         app:layout_constraintVertical_bias="0.653" />
 
     <ImageView
         android:id="@+id/backToSignin"
         android:layout_width="51dp"
-        android:layout_height="49dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginBottom="357dp"
+        app:layout_constraintBottom_toTopOf="@+id/SignupBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/abc_vector_test"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="28dp"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
