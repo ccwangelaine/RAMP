@@ -1,13 +1,9 @@
-
 package com.example.ramp;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -21,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mDatabase = FirebaseDatabase.getInstance().getReference();
-
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         logout = findViewById(R.id.LogoutBtn);
@@ -43,5 +38,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
 }
