@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -22,6 +23,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.functions.FirebaseFunctions;
+import com.google.firebase.functions.HttpsCallableResult;
 
 public class Login extends AppCompatActivity {
     EditText email, password;
@@ -29,8 +32,29 @@ public class Login extends AppCompatActivity {
     FirebaseAuth fAuth;
     private static final String TAG = "Login";
 
+    private void helloWorld (){
+        FirebaseFunctions mFunctions;
+        mFunctions = FirebaseFunctions.getInstance();
+        Task<String> test = mFunctions
+                .getHttpsCallable("helloWorld")
+                .call()
+                .continueWith(new Continuation<HttpsCallableResult, String>() {
+                    @Override
+                    public String then(@NonNull Task<HttpsCallableResult> task) throws Exception {
+                        // This continuation runs on either success or failure, but if the task
+                        // has failed then getResult() will throw an Exception which will be
+                        // propagated down.
+                        String result = (String) task.getResult().getData();
+                        return result;
+                    }
+                });
+        System.out.println(test.getResult());
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        System.out.println("hello");
+        //helloWorld();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
